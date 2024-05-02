@@ -29,10 +29,10 @@ export class AppComponent implements AfterViewInit {
     // ],
   };
 
-  public qrCodeResult: ScannerQRCodeSelectedFiles[] = [];
-  public qrCodeResult2: ScannerQRCodeSelectedFiles[] = [];
-  public percentage = 80;
-  public quality = 100;
+  // public qrCodeResult: ScannerQRCodeSelectedFiles[] = [];
+  // public qrCodeResult2: ScannerQRCodeSelectedFiles[] = [];
+  // public percentage = 80;
+  // public quality = 100;
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
@@ -60,56 +60,56 @@ export class AppComponent implements AfterViewInit {
     // }
   }
 
-  public onEvent(e: ScannerQRCodeResult[], action?: any): void {
-    // e && action && action.pause();
-    console.log(e);
-  }
+  // public onEvent(e: ScannerQRCodeResult[], action?: any): void {
+  //   // e && action && action.pause();
+  //   console.log(e);
+  // }
 
-  public handle(action: any, fn: string): void {
-    // Fix issue #27, #29
-    const playDeviceFacingBack = (devices: any[]) => {
-      console.log(devices);
+  // public handle(action: any, fn: string): void {
+  //   // Fix issue #27, #29
+  //   const playDeviceFacingBack = (devices: any[]) => {
+  //     console.log(devices);
 
-      // front camera or back camera check here!
-      const device = devices.find(f => (/back|rear|environment/gi.test(f.label))); // Default Back Facing Camera
-      action.playDevice(device ? device.deviceId : devices[0].deviceId);
-    }
+  //     // front camera or back camera check here!
+  //     const device = devices.find(f => (/back|rear|environment/gi.test(f.label))); // Default Back Facing Camera
+  //     action.playDevice(device ? device.deviceId : devices[0].deviceId);
+  //   }
 
-    if (fn === 'start') {
-      action[fn](playDeviceFacingBack).subscribe((r: any) => console.log(fn, r), alert);
-    } else {
-      action[fn]().subscribe((r: any) => console.log(fn, r), alert);
-    }
-  }
+  //   if (fn === 'start') {
+  //     action[fn](playDeviceFacingBack).subscribe((r: any) => console.log(fn, r), alert);
+  //   } else {
+  //     action[fn]().subscribe((r: any) => console.log(fn, r), alert);
+  //   }
+  // }
 
-  public onDowload(action: NgxScannerQrcodeComponent) {
-    action.download().subscribe(console.log, alert);
-  }
+  // public onDowload(action: NgxScannerQrcodeComponent) {
+  //   action.download().subscribe(console.log, alert);
+  // }
 
-  public onSelects(files: any) {
-    this.qrcode.loadFiles(files, this.percentage, this.quality).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
-      this.qrCodeResult = res;
-    });
-  }
+  // public onSelects(files: any) {
+  //   this.qrcode.loadFiles(files, this.percentage, this.quality).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
+  //     this.qrCodeResult = res;
+  //   });
+  // }
 
-  public onSelects2(files: any) {
-    this.qrcode.loadFilesToScan(files, this.config, this.percentage, this.quality).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
-      console.log(res);
-      this.qrCodeResult2 = res;
-    });
-  }
+  // public onSelects2(files: any) {
+  //   this.qrcode.loadFilesToScan(files, this.config, this.percentage, this.quality).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
+  //     console.log(res);
+  //     this.qrCodeResult2 = res;
+  //   });
+  // }
 
-  public onGetConstraints() {
-    const constrains = this.action.getConstraints();
-    console.log(constrains);
-  }
+  // public onGetConstraints() {
+  //   const constrains = this.action.getConstraints();
+  //   console.log(constrains);
+  // }
   
-  public applyConstraints() {
-    const constrains = this.action.applyConstraints({
-      ...this.action.getConstraints(),
-      width: 510
-    });
-    console.log(constrains);
-  }
+  // public applyConstraints() {
+  //   const constrains = this.action.applyConstraints({
+  //     ...this.action.getConstraints(),
+  //     width: 510
+  //   });
+  //   console.log(constrains);
+  // }
 
 }
