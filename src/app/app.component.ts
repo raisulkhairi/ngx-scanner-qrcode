@@ -39,9 +39,25 @@ export class AppComponent implements AfterViewInit {
   constructor(private qrcode: NgxScannerQrcodeService) { }
 
   ngAfterViewInit(): void {
-    this.action.isReady.subscribe((res: any) => {
-      // this.handle(this.action, 'start');
-    });
+    this.action.start();
+    this.action.constraints = {
+      video: {
+        facingMode: {
+          exact: 'environment'
+        }
+      }
+    }
+    // this.action.isReady.subscribe((res: any) => {
+    //   this.handle(this.action, 'start');
+    // });
+
+    // this.action.constraints = {
+    //   video: {
+    //     facingMode: {
+    //       exact: 'environment'
+    //     }
+    //   }
+    // }
   }
 
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
@@ -52,6 +68,8 @@ export class AppComponent implements AfterViewInit {
   public handle(action: any, fn: string): void {
     // Fix issue #27, #29
     const playDeviceFacingBack = (devices: any[]) => {
+      console.log(devices);
+
       // front camera or back camera check here!
       const device = devices.find(f => (/back|rear|environment/gi.test(f.label))); // Default Back Facing Camera
       action.playDevice(device ? device.deviceId : devices[0].deviceId);
